@@ -1,13 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import { GithubProvider } from './context/context';
-import { Auth0Provider } from '@auth0/auth0-react';
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import { GithubProvider } from "./context/context";
+import { Auth0Provider } from "@auth0/auth0-react";
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Auth0Provider
+      domain="dev-pu8wyk-g.us.auth0.com"
+      clientId="GYsVn60CkUU6fa4yiwpRrT1KVL5KuzPh"
+      redirectUri={window.location.origin}
+      cacheLocation="localstorage"
+    >
+      <GithubProvider>
+        <App />
+      </GithubProvider>
+    </Auth0Provider>
   </React.StrictMode>
 );
-
