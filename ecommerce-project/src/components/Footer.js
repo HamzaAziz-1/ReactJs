@@ -2,15 +2,17 @@ import React from 'react'
 import styled from 'styled-components'
 const Footer = () => {
   return (
-    <Wrapper>
-      <h5>&copy;{new Date().getFullYear()}
+    <Container>
+      <h5>
+        &copy; {new Date().getFullYear()}
         <span> ComfySloth </span>
-       All rights reserved</h5>
-    </Wrapper>
+      </h5>
+      <h5>All rights reserved</h5>
+    </Container>
   )
 }
 
-const Wrapper = styled.footer`
+const Container = styled.footer`
   height: 5rem;
   display: flex;
   flex-direction: column;
