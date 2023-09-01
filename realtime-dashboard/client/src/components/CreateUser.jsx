@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import io from "socket.io-client";
+
 export default function CreateUser() {
 
   const [name, setName] = useState("")
@@ -45,7 +47,9 @@ export default function CreateUser() {
       { notify() }
     }
     if (response.ok) {
-      console.log(result)
+       const socket = io("http://localhost:4000");
+       socket.emit("userCreated", result);
+      toast("user created");
       setError("")
       setName("")
       setEmail("")

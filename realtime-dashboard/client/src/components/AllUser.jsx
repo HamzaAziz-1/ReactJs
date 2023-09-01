@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-
+import io from "socket.io-client";
 export default function AllUser() {
 
   const [allUser, setAllUser] = useState()
@@ -16,12 +16,19 @@ export default function AllUser() {
       setError(result.error)
     }
     if (response.ok) {
+     
       setAllUser(result)
     }
   }
 
   useEffect(() => {
-    getAllUser()
+    getAllUser();
+    
+    const socket = io("http://localhost:4000"); 
+    console.log("connection")
+    socket.on("userCreated", (data) => {
+      setAllUser((prevUsers) => [...prevUsers, data]);
+    });
   }, [])
 
   const handleDelete = async (id) => {

@@ -17,7 +17,10 @@ router.post('/', async (req, res) => {
         res.status(201).json(userAdded)
     }
     catch (error) {
-        res.status(400).json({ error: error.message })
+        // res.status(400).json({
+            // error: error.message
+            console.log(error)
+        // })
     }
 })
 
