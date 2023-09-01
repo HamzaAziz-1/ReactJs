@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import io from "socket.io-client";
+import {io} from "socket.io-client";
 export default function AllUser() {
 
   const [allUser, setAllUser] = useState()
@@ -25,8 +25,7 @@ export default function AllUser() {
     getAllUser();
     
     const socket = io("http://localhost:4000"); 
-    console.log("connection")
-    socket.on("userCreated", (data) => {
+    socket.on("userUpdated", (data) => {
       setAllUser((prevUsers) => [...prevUsers, data]);
     });
   }, [])

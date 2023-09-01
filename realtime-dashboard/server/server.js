@@ -6,7 +6,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const http = require("http"); 
 const {Server} =require("socket.io")
-const socketIo = require("socket.io"); // Add Socket.io module
+
 
 dotenv.config();
 
@@ -20,14 +20,19 @@ mongoose
   .connect(process.env.URI)
   .then(() => {
     console.log("Database Connected");
-    const server = http.createServer(app); // Create an HTTP server
-    const io = new Server(server) // Initialize Socket.io and attach it to the server
+      const server = http.createServer(app); // Create an HTTP server
+      const io = new Server(server, {
+        cors: {
+          origin: "http://localhost:3000",
+        },
+      });
+  
 
     io.on("connection", (socket) => {
       console.log("A user connected");
 
       // You can listen to events and emit them here, e.g., sending updated user data
-      socket.on("userUpdated", (data) => {
+      socket.on("userCreated", (data) => {
         io.emit("userUpdated", data); // Emit the event to all connected clients
       });
 
