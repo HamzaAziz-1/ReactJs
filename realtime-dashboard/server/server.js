@@ -29,8 +29,6 @@ mongoose
   
 
     io.on("connection", (socket) => {
-    //   console.log("A user connected");
-
       // You can listen to events and emit them here, e.g., sending updated user data
       socket.on("userCreated", (data) => {
         io.emit("userUpdated", data); // Emit the event to all connected clients
